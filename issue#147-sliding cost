@@ -1,0 +1,21 @@
+n, k = map(int, input().split())
+arr = list(map(int, input().split()))
+
+def calculate_window_cost(window):
+    median = sorted(window)[len(window) // 2]
+    cost = sum(abs(x - median) for x in window)
+    return cost
+
+costs = []
+window = arr[:k]
+cost = calculate_window_cost(window)
+costs.append(cost)
+
+for i in range(k, n):
+    window.pop(0)
+    window.append(arr[i])
+    cost -= abs(arr[i - k] - sorted(window)[k // 2])
+    cost += abs(arr[i] - sorted(window)[k // 2])
+    costs.append(cost)
+
+print(" ".join(map(str, costs)))
