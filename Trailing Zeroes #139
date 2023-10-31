@@ -1,0 +1,10 @@
+n = int(input("Enter an integer n: "))
+
+trailing_zeros = 0
+
+# Keep dividing n by 5 and adding the result to the count of trailing zeros
+while n >= 5:
+    n //= 5
+    trailing_zeros += n
+
+print("Number of trailing zeros in", n, "! is:", trailing_zeros)
