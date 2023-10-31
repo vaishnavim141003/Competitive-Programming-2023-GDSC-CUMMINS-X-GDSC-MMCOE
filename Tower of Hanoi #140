@@ -1,0 +1,30 @@
+def tower_of_hanoi(n, source, auxiliary, target):
+    if n == 1:
+        print(source, target)
+    else:
+        tower_of_hanoi(n - 1, source, target, auxiliary)
+        print(source, target)
+        tower_of_hanoi(n - 1, auxiliary, source, target)
+
+def hanoi_moves(n):
+    moves = []
+    def tower_of_hanoi_with_moves(n, source, auxiliary, target):
+        nonlocal moves
+        if n == 1:
+            moves.append((source, target))
+        else:
+            tower_of_hanoi_with_moves(n - 1, source, target, auxiliary)
+            moves.append((source, target))
+            tower_of_hanoi_with_moves(n - 1, auxiliary, source, target)
+    
+    tower_of_hanoi_with_moves(n, 1, 2, 3)
+    return moves
+
+# Input the number of disks
+n = int(input("Enter the number of disks: "))
+
+# Calculate and print the minimum number of moves
+moves = hanoi_moves(n)
+print(len(moves))
+for move in moves:
+    print(*move)
