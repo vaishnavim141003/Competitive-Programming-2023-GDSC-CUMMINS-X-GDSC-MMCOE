@@ -1,0 +1,18 @@
+n = int(input())
+events = []  # Create a list to store customer events (arrival, departure)
+for _ in range(n):
+    a, b = map(int, input().split())
+    events.append((a, 1))  # Arrival event
+    events.append((b, -1))  # Departure event
+
+# Sort the events by time
+events.sort()
+
+max_customers = 0  # Initialize the maximum number of customers
+current_customers = 0  # Initialize the number of customers currently in the restaurant
+
+for _, event_type in events:
+    current_customers += event_type  # Update the number of customers
+    max_customers = max(max_customers, current_customers)
+
+print(max_customers)
