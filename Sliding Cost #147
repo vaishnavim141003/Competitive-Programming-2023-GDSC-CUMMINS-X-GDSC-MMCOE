@@ -1,0 +1,20 @@
+n, k = map(int, input().split())
+arr = list(map(int, input().split()))
+
+# Function to calculate the cost of making elements in the window equal
+def calculate_window_cost(window):
+    median = sorted(window)[len(window) // 2]  # Calculate the median element
+    cost = 0
+    for elem in window:
+        cost += abs(elem - median)  # Calculate cost as the absolute difference from the median
+    return cost
+
+costs = []
+
+# Calculate the cost for each window of size k
+for i in range(n - k + 1):
+    window = arr[i:i + k]
+    window_cost = calculate_window_cost(window)
+    costs.append(window_cost)
+
+print(*costs)
